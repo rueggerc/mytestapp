@@ -21,6 +21,14 @@ public class FooTest {
 		System.out.println("FooTests.errorShouldBeThrownIfNullIsPassedAsParameter");
 	}
 	
+	@Test
+	public void testSomeStuff() {
+		System.out.println("FooTests.testSomeStuff");
+		// serviceBusMock = mock(IServiceBusService.class);
+		// restTemplateMock = mock(RestTemplate.class);
+		// verify(serviceBusMock,never()).prepareAndSendMemberInfoToServiceBus(any(MemberInfo.class));
+	}
+	
 	
 	
 }
