@@ -1,21 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <packaging>jar</packaging>
+  
   
   <groupId>com.rueggerllc</groupId>
   <artifactId>mytestapp</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
   
   
   <properties>
   	<skip.integration.tests>false</skip.integration.tests>
 	<maven.compiler.source>1.8</maven.compiler.source>
 	<maven.compiler.target>1.8</maven.compiler.target>
-	<wiremock.version>2.18.0</wiremock.version>
+	
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
+	<surefire.plugin.version>2.21.0</surefire.plugin.version>
+	
+	<!-- JUnit-->
 	<junit.version>4.12</junit.version>
+	
+	<!--  Cucumber -->
+	<cucumber.java.version>3.0.2</cucumber.java.version>
+	<cucumber.testng.version>3.0.2</cucumber.testng.version>
+	<cucumber.spring.version>3.0.2</cucumber.spring.version>
+	
+	<!--  Wiremock -->
+	<wiremock.version>2.18.0</wiremock.version>
+	
+	<!--  TestNG -->
 	<testng.version>6.14.3</testng.version>
+	
+	<!--  Misc -->
+	<apache.httpclient.version>4.5.5</apache.httpclient.version>
 	<org.json.version>20180130</org.json.version>
+	
+	<!--  Mockito -->
+	<mockito.version>2.8.9</mockito.version>
   </properties>
 
  
@@ -29,11 +52,12 @@
     </dependency>
     
     <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock</artifactId>
-      <version>${wiremock.version}</version>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
+    
     
     <dependency>
       <groupId>org.testng</groupId>
@@ -41,7 +65,86 @@
       <version>${testng.version}</version>
       <scope>test</scope>
     </dependency>
-    
-    
+
+
+    <dependency>
+    	<groupId>com.github.tomakehurst</groupId>
+    	<artifactId>wiremock</artifactId>
+    	<version>${wiremock.version}</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-java</artifactId>
+    	<version>${cucumber.java.version}</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-spring</artifactId>
+    	<version>${cucumber.spring.version}</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-testng</artifactId>
+    	<version>${cucumber.testng.version}</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.cloud</groupId>
+    	<artifactId>spring-cloud-contract-wiremock</artifactId>
+    	<version>2.0.0.RELEASE</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.httpcomponents</groupId>
+    	<artifactId>httpclient</artifactId>
+    	<version>${apache.httpclient.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.json</groupId>
+    	<artifactId>json</artifactId>
+    	<version>${org.json.version}</version>
+    </dependency>
   </dependencies>
+  
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-surefire-plugin</artifactId>
+  			<version>2.21.0</version>
+  			<configuration>
+  				<suiteXmlFiles>
+  					<suitXmlFile>src/test/resources/testng/unit-testng.xml</suitXmlFile>
+  				</suiteXmlFiles>
+  			</configuration>
+  		</plugin>
+  		
+ 		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-failsafe-plugin</artifactId>
+  			<version>2.18.1</version>
+  			<executions>
+  				<execution>
+  					<goals>
+  						<goal>integration-test</goal>
+  						<goal>verify</goal>
+  					</goals>
+  				</execution>
+  			</executions>
+  			<configuration>
+  				<suiteXmlFiles>
+  					<suitXmlFile>src/test/resources/testng/int-testng.xml</suitXmlFile>
+  				</suiteXmlFiles>
+  			</configuration>
+  		</plugin>
+  	
+  	</plugins>
+  </build>
+  
+ 
+  
 </project>

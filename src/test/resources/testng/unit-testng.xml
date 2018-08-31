@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Foobar Service Tests" verbose="1" parallel="false" thread-count="3">
+
+	<test name="Foo App Service Tests">
+		<classes>
+			<class name="com.rueggerllc.tests.unit.FooTest"/>
+		</classes>
+	
+	</test>
+
+</suite>
