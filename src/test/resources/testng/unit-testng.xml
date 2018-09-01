@@ -6,7 +6,12 @@
 		<classes>
 			<class name="com.rueggerllc.tests.unit.FooTest"/>
 		</classes>
+	</test>
 	
+	<test name="REST Controller Tests">
+		<classes>
+			<class name="com.rueggerllc.tests.unit.RESTControllerTest"/>
+		</classes>
 	</test>
 
 </suite>
